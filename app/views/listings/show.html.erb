@@ -1,0 +1,29 @@
+<h1><%= @listing.title %></h1>
+<p><%= @listing.description %></p>
+<p>Starting price: <%= number_to_currency(@listing.starting_price, unit: "€", precision: 0) %></p>
+<p>Current price: <strong><%= number_to_currency(@listing.current_price, unit: "€", precision: 0) %></strong></p>
+<p>Ends: <%= l(@listing.ends_at, format: :long) %></p>
+<% if @listing.open? %>
+  <h2>Place a bid</h2>
+  <p>Minimum next bid: €<%= @listing.minimum_next_bid %></p>
+  <%= render "listings/errors", record: @bid %>
+  <%= form_with model: [@listing, @bid] do |form| %>
+    <%= form.label :bidder_name %><%= form.text_field :bidder_name %>
+    <%= form.label :amount, "Amount (€)" %><%= form.number_field :amount, min: 1, step: 1 %>
+    <%= form.submit "Place bid" %>
+  <% end %>
+<% else %>
+  <h2>Auction ended</h2>
+  <% if (winner = @listing.highest_bid) %>
+    <p>Winner: <strong><%= winner.bidder_name %></strong> with €<%= winner.amount %></p>
+  <% else %>
+    <p>No bids were placed.</p>
+  <% end %>
+<% end %>
+<h2>Bid history</h2>
+<% if @bids.empty? %><p>No bids yet.</p><% end %>
+<ul>
+  <% @bids.each do |bid| %>
+    <li><%= bid.bidder_name %> — €<%= bid.amount %></li>
+  <% end %>
+</ul>

@@ -1,0 +1,9 @@
+/.bundle
+/log/*
+/tmp/*
+/storage/*
+/vendor/bundle/
+!/log/.keep
+!/tmp/.keep
+!/storage/.keep
+.env

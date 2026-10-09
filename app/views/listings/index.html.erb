@@ -1,0 +1,8 @@
+<h1>Classic car auctions</h1>
+<% @listings.each do |listing| %>
+  <article>
+    <h2><%= link_to listing.title, listing_path(listing) %></h2>
+    <p>Current price: <strong><%= number_to_currency(listing.current_price, unit: "€", precision: 0) %></strong></p>
+    <p>Ends: <%= l(listing.ends_at, format: :long) %> — <%= listing.open? ? "Open" : "Ended" %></p>
+  </article>
+<% end %>

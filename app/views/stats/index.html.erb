@@ -1,0 +1,15 @@
+<h1>Auction funnel statistics</h1>
+<table>
+  <thead><tr><th>Listing</th><th>Views</th><th>Bid attempts</th><th>Bids placed</th><th>Conversion</th></tr></thead>
+  <tbody>
+    <% @listings.each do |listing| %>
+      <% views = @counts.fetch([listing.id, "view"], 0) %>
+      <% attempts = @counts.fetch([listing.id, "bid_attempt"], 0) %>
+      <% successes = @counts.fetch([listing.id, "bid_success"], 0) %>
+      <tr>
+        <td><%= listing.title %></td><td><%= views %></td><td><%= attempts %></td><td><%= successes %></td>
+        <td><%= views.zero? ? "0.0%" : "#{(successes * 100.0 / views).round(1)}%" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,9 @@
+<h1>Create an auction</h1>
+<%= render "errors", record: @listing %>
+<%= form_with model: @listing do |form| %>
+  <%= form.label :title %><%= form.text_field :title %>
+  <%= form.label :description %><%= form.text_area :description %>
+  <%= form.label :starting_price, "Starting price (whole euros)" %><%= form.number_field :starting_price, min: 1, step: 1 %>
+  <%= form.label :ends_at %><%= form.datetime_local_field :ends_at %>
+  <%= form.submit "Create auction" %>
+<% end %>

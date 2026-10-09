@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Kickdown Lite</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <style>
+      body { font-family: system-ui, sans-serif; max-width: 850px; margin: 2rem auto; padding: 0 1rem; line-height: 1.5; color: #222; }
+      nav { display: flex; gap: 1rem; border-bottom: 1px solid #ddd; padding-bottom: 1rem; }
+      article { padding: 1rem 0; border-bottom: 1px solid #ddd; }
+      input, textarea { display: block; width: 100%; max-width: 420px; padding: .5rem; margin: .3rem 0 1rem; }
+      button { padding: .6rem 1rem; cursor: pointer; }
+      table { border-collapse: collapse; width: 100%; }
+      th, td { border: 1px solid #ddd; padding: .6rem; text-align: left; }
+      .errors { color: #a11; }
+      .notice { color: #176b35; }
+    </style>
+  </head>
+  <body>
+    <nav><%= link_to "Kickdown Lite", root_path %><%= link_to "New auction", new_listing_path %><%= link_to "Stats", stats_path %></nav>
+    <% if notice %><p class="notice"><%= notice %></p><% end %>
+    <%= yield %>
+  </body>
+</html>
