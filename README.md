@@ -16,8 +16,6 @@ bin/rails server
 
 Open http://localhost:3000. Seed data contains Mercedes 190E, Porsche 911, and BMW E30; their auctions end five days after seeding.
 
-If starting completely from scratch, the usual generator command is `rails new kickdown-lite --database=sqlite3 --skip-javascript` (Rails defaults to Minitest). This archive contains the project source prepared directly because Rails could not be installed in the build environment.
-
 ## Design notes
 
 - **Models own the rules:** Listing decides whether it is open and the minimum bid; Bid checks the bidder name, auction status, and amount.
